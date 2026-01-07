@@ -86,27 +86,6 @@ OR parent_process IN (winword.exe, excel.exe, outlook.exe)
 )
 THEN alert = Suspicious PowerShell Execution
 
-### Example Sigma Rule (Simplified)
-```yaml
-title: Suspicious PowerShell Encoded Command Execution
-logsource:
-  product: windows
-  service: security
-
-detection:
-  selection_process:
-    Image|endswith: '\powershell.exe'
-
-  selection_encoded:
-    CommandLine|contains:
-      - '-enc'
-      - '-EncodedCommand'
-
-  condition: selection_process and selection_encoded
-
-level: high
-
-
 
 ## 5. Alert Example
 ### Alert Name
